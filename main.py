@@ -1,7 +1,10 @@
 def main():
     book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
-    #print(text)
+    
+    char_count = count_chr(text)
+    word_count = count_words(text)
+    report(char_count, word_count)
 
 
 def get_book_text(path):
@@ -9,37 +12,10 @@ def get_book_text(path):
         return f.read()
 
 def count_words(text):
-    return len(text)
+    return len(text.split())
         
 def count_chr(text):
-    char_map = {
-        'a':0,
-        'b':0,
-        'c':0,
-        'd':0,
-        'e':0,
-        'f':0,
-        'g':0,
-        'h':0,
-        'i':0,
-        'j':0,
-        'k':0,
-        'l':0,
-        'm':0,
-        'n':0,
-        'o':0,
-        'p':0,
-        'q':0,
-        'r':0,
-        's':0,
-        't':0,
-        'u':0,
-        'v':0,
-        'w':0,
-        'x':0,
-        'y':0,
-        'z':0
-    }
+    char_map = {char: 0 for char in 'abcdefghijklmnopqrstuvwxyz'}
     
     lowered_string = text.lower()
     
@@ -49,8 +25,35 @@ def count_chr(text):
     
     return char_map          
             
+
+def report(char_count, word_count):
+    '''
+    count_chr (dict): Dictionary with characters as keys and their counts as values.
+    count_words (int): Count number of words in the document.
     
+    '''
+    
+    # convert dict to list
+    char_list = [{"character": k, "num": v} for k, v in char_count.items() if k.isalpha()]
+    
+    # sort the list
+    char_list.sort(key=lambda x: x["num"], reverse=True)
+    
+    # Print the report
+    print(f"--- Begin report of books/frankenstein.txt ---")
+    print(f"{word_count} words found in the document")    
+    
+    # Iterate through the sorted list
+    
+    
+    
+    for item in char_list:
+        print(f"The '{item['character']}' character was found {item['num']} times")
+
+    print("--- End report ---")
 
 
-main()
+if __name__ == "__main__":
+    main()
+
 
