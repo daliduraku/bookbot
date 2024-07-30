@@ -43,9 +43,11 @@ def report(char_count, word_count):
     print(f"--- Begin report of books/frankenstein.txt ---")
     print(f"{word_count} words found in the document")    
     
+    # Print space 
+    print("\n")
+    
+    
     # Iterate through the sorted list
-    
-    
     
     for item in char_list:
         print(f"The '{item['character']}' character was found {item['num']} times")
